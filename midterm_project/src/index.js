@@ -11,15 +11,17 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Main from './page/main';
-import Content from './page/content';
+import AllContent from './page/allcontent';
+import Content from './page/content'
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="main" element={<Main />} />
-        <Route path="content" element={<Content />} />
+        <Route path="/main" element={<Main />} />
+        <Route path="/content" element={<AllContent />} />
+        <Route path="/content/:id" element={<Content />} />
       </Routes>
     </BrowserRouter>
     ,
