@@ -1,31 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import reportWebVitals from './reportWebVitals';
 import './index.css';
+
+//styles
 import {
   BrowserRouter,
   Routes,
   Route,
 } from 'react-router-dom';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navbar, Nav } from 'react-bootstrap';
 
+//component
 import Main from './page/main';
 import AllContent from './page/allcontent';
-import Content from './page/content'
+import Content from './page/content';
+import Author from './page/author'
 
 ReactDOM.render(
+  <>
+  {/* Navbar */}
+  <Navbar bg="dark" variant="dark" style={{paddingLeft : 10}}>
+    <Navbar.Brand href="/">Home</Navbar.Brand>
+    <Nav className="me-auto">
+      <Nav.Link href="/content">Content</Nav.Link>
+      <Nav.Link href="/author">Author</Nav.Link>
+    </Nav>
+  </Navbar>
+
+  {/* router */}
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/main" element={<Main />} />
+        <Route path="/" element={<Main />} />
         <Route path="/content" element={<AllContent />} />
         <Route path="/content/:id" element={<Content />} />
+        <Route path="/author" element={<Author />} />
       </Routes>
     </BrowserRouter>
-    ,
-  </React.StrictMode>,
+  </React.StrictMode>
+  </>
+  ,
   document.getElementById('root'),
 );
 

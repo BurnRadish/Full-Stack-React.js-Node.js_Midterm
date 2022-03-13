@@ -1,4 +1,3 @@
-import "../App.css";
 import { Container, Card, Badge, Tab, Tabs } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
@@ -47,6 +46,7 @@ function AllContent() {
   }, []);
 
   function authorName(id) {
+    //need to impliment later note***
     let recol = [];
     for (var i = 0; i < author.length; i++) {
       if (id === author[i].id) {
@@ -79,7 +79,7 @@ function AllContent() {
                         __html: posts[i].excerpt.rendered,
                       }}
                     ></Card.Text>
-                    <Link to={"/content/" + posts[i].id} className="btn btn-primary">
+                    <Link to={"/content/" + posts[i].id} className="btn btn-primary" >
                       Read Full Content click here
                     </Link>
                   </Card.Body>
@@ -96,6 +96,12 @@ function AllContent() {
     padding: "5px",
   };
 
+  const bg ={
+    backgroundColor: 'white',
+  marginTop: 10,
+  borderRadius: 10, 
+  };
+
   return (
     <Container fluid>
       <h1>
@@ -106,6 +112,7 @@ function AllContent() {
         className="mb-3"
         transition={true}
         variant='tabs'
+        style={bg}
       >
         {categorie.map((tag, index) => (
           <Tab eventKey={tag.name} title={tag.name} key={index}>
