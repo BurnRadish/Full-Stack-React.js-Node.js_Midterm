@@ -1,5 +1,4 @@
-import "../App.css";
-import { Container, Card, Button } from "react-bootstrap";
+import { Container, Card, } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 
 import React, { useEffect, useState } from "react";
@@ -22,14 +21,14 @@ function Content() {
       const getAuthor = await fetch(
         "https://fswd-wp.devnss.com/wp-json/wp/v2/users"
       );
-      if (!getPost.ok) {
+      if (!getAuthor.ok) {
         return "Can't found author data!!!";
       }
 
       const getComment = await fetch(
         "https://fswd-wp.devnss.com/wp-json/wp/v2/comments"
       );
-      if (!getPost.ok) {
+      if (!getComment.ok) {
         return "Can't found comment data!!!";
       }
 

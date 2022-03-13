@@ -1,4 +1,4 @@
-import { Container, Card, Badge, Tab, Tabs, Row, Col } from "react-bootstrap";
+import { Container, Card, Badge, Tab, Tabs} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
