@@ -1,4 +1,4 @@
-import { Container, Card, Badge, Tab, Tabs } from "react-bootstrap";
+import { Container, Card, Badge, Tab, Tabs, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
@@ -18,14 +18,14 @@ function AllContent() {
       const getAuthor = await fetch(
         "https://fswd-wp.devnss.com/wp-json/wp/v2/users"
       );
-      if (!getPost.ok) {
+      if (!getAuthor.ok) {
         return "Can't found author data!!!";
       }
 
       const getCag = await fetch(
         "https://fswd-wp.devnss.com/wp-json/wp/v2/categories"
       );
-      if (!getPost.ok) {
+      if (!getCag.ok) {
         return "Can't found cagtegory data!!!";
       }
 
@@ -60,31 +60,31 @@ function AllContent() {
     return recol;
   }
 
-  function sortPost(tag){
-    console.log(tag)
+  function sortPost(tag) {
+    console.log(tag);
     let result = [];
-    for (var i=0; i <posts.length; i++){
-      console.log(posts[i].categories)
-      if(posts[i].categories.includes(tag)){
+    for (var i = 0; i < posts.length; i++) {
+      console.log(posts[i].categories);
+      if (posts[i].categories.includes(tag)) {
         result.push(
           <Card style={box}>
-                  <Card.Body style={{ width: "100%" }}>
-                    <Card.Title
-                      style={{ fontSize: "46px" }}
-                      dangerouslySetInnerHTML={{ __html: posts[i].title.rendered }}
-                    ></Card.Title>
-                    {authorName(posts[i].author)}
-                    <Card.Text
-                      dangerouslySetInnerHTML={{
-                        __html: posts[i].excerpt.rendered,
-                      }}
-                    ></Card.Text>
-                    <Link to={"/content/" + posts[i].id} className="btn btn-primary" >
-                      Read Full Content click here
-                    </Link>
-                  </Card.Body>
-                </Card>
-        )
+            <Card.Body style={{ width: "100%" }}>
+              <Card.Title
+                style={{ fontSize: "46px" }}
+                dangerouslySetInnerHTML={{ __html: posts[i].title.rendered }}
+              ></Card.Title>
+              {authorName(posts[i].author)}
+              <Card.Text
+                dangerouslySetInnerHTML={{
+                  __html: posts[i].excerpt.rendered,
+                }}
+              ></Card.Text>
+              <Link to={"/content/" + posts[i].id} className="btn btn-outline-dark btn-lg">
+                Read Full Content click here
+              </Link>
+            </Card.Body>
+          </Card>
+        );
       }
     }
     return result;
@@ -94,31 +94,39 @@ function AllContent() {
   const box = {
     margin: "10px",
     padding: "5px",
+    borderRadius: 20,
   };
 
-  const bg ={
-    backgroundColor: 'white',
-  marginTop: 10,
-  borderRadius: 10, 
+  const bg = {
+    backgroundColor: "white",
+    marginTop: 10,
+    borderRadius: 10,
+  };
+
+  const title = {
+    backgroundColor: "white",
+    marginTop: 10,
+    marginButtom: 10,
+    padding: 10,
+    borderRadius: 20,
+    width : '20%'
   };
 
   return (
     <Container fluid>
-      <h1>
-        Post Section <Badge bg="danger">HOT</Badge>
+      <h1 style={title}>
+        Posts Section <Badge bg="danger">HOT</Badge>
       </h1>
       <Tabs
         defaultActiveKey="Category"
         className="mb-3"
         transition={true}
-        variant='tabs'
+        variant="tabs"
         style={bg}
       >
         {categorie.map((tag, index) => (
           <Tab eventKey={tag.name} title={tag.name} key={index}>
-            <div>
-              {sortPost(tag.id)}  
-            </div>
+            <div>{sortPost(tag.id)}</div>
           </Tab>
         ))}
       </Tabs>
